@@ -55,15 +55,15 @@ namespace WebApiCore2.Controllers
 
         }
 
-        [HttpGet("product/get/category/{Id}")]
-        public async Task<IActionResult> GetProductsCategories(int? Id)
+        [HttpGet("product/get")]
+        public async Task<IActionResult> GetProductsCategories()
         {
             try
             {
                 List<Product> productList = new List<Product>();
                 using (var httpClient = new HttpClient())
                 {
-                    string URL = Api + "/product/get/category/" + Id;
+                    string URL = Api + "/product/get;
                     HttpResponseMessage response = await httpClient.GetAsync(URL);
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     productList = JsonConvert.DeserializeObject<List<Product>>(apiResponse).Select(

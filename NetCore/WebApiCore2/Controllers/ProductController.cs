@@ -19,12 +19,12 @@ namespace WebApiCore2.Controllers
             _product = product;
         }
         
-        [HttpGet("get/category/{Id}")]
-        public async Task<IActionResult> GetProductsCategories(int? Id)
+        [HttpGet("get")]
+        public async Task<IActionResult> GetProductsCategories()
         {
             try
             {
-                var categories = await Task.FromResult(_product.GetAll<Product>($"Select product_id, product_name, product_imagen from product where category_id = {Id}", null, commandType: CommandType.Text));
+                var categories = await Task.FromResult(_product.GetAll<Product>($"Select product_id, product_name, product_imagen from product where product_cantidad > 0", null, commandType: CommandType.Text));
                 if (categories == null)
                 {
                     return NotFound();
