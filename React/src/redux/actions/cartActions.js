@@ -15,20 +15,22 @@ export const addToCart = (id, product_cantidad) => async (dispatch, getState) =>
       product_cantidad,
     },
   });
-
   localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
 };
 
 export const addToPurchase = (cartItems) => async (dispatch, getState) => {
   const items = {pParametroJson : cartItems}
   await axios.post(`/api/purchase/add`, items);
+  dispatch({
+    type: actionTypes.CART_RESET
+  });
   localStorage.setItem("cart", JSON.stringify([]));
 };
 
-export const removeFromCart = (product_id) => (dispatch, getState) => {
+export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({
     type: actionTypes.REMOVE_FROM_CART,
-    payload: product_id,
+    payload: id,
   });
 
   localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));

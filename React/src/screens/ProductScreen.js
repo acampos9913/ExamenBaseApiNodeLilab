@@ -18,8 +18,11 @@ const ProductScreen = ({ match, history }) => {
       dispatch(getProductDetails(match.params.id));
     }
     else{
-      if (product && match.params.id === product.product_id) {
-        dispatch(getProductDetails(match.params.id));
+      if (product) {
+        if(parseInt(match.params.id) !== parseInt(product.product_id)){
+          dispatch(getProductDetails(match.params.id));
+          product.product_id = match.params.id;
+        }
       }
     }
       

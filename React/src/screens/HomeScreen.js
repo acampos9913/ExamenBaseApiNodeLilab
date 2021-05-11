@@ -21,24 +21,30 @@ const HomeScreen = () => {
   return (
     <div className="homescreen">
       <h2 className="homescreen__title">Ultimos Productos</h2>
-      <div className="homescreen__products">
-        {loading ? (
-          <h2>Cargando...</h2>
-        ) : error ? (
-          <h2>{error}</h2>
-        ) : (
-          products.map((product) => (
-            <Product
-              key={product.product_id}
-              product_name={product.product_name}
-              product_descripcion={product.product_descripcion}
-              product_precio={product.product_precio}
-              product_imagen={product.product_imagen}
-              product_id={product.product_id}
-            />
-          ))
-        )}
-      </div>
+      {products.length  > 0 ?
+          <div className="homescreen__products">
+          {loading ? (
+            <h2>Cargando...</h2>
+          ) : error ? (
+            <h2>{error}</h2>
+          ) : (
+            products.map((product) => (
+              <Product
+                key={product.product_id}
+                product_name={product.product_name}
+                product_descripcion={product.product_descripcion}
+                product_precio={product.product_precio}
+                product_imagen={product.product_imagen}
+                product_cantidad={product.product_cantidad}
+                product_id={product.product_id}
+              />
+            ))
+          )}
+        </div>
+        :
+        <div className="homescreen__products">No hay productos disponibles</div>
+      }
+      
     </div>
   );
 };
