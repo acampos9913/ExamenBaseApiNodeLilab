@@ -2,7 +2,7 @@ Los proyectos estan en tres carpetas distintas: En Node, React, Net core
 
 En node y react ejecutar npm install
 Para levantar
-- Node npm src/index.js
+- Node node src/index.js
 - React npm start
 
 El consumo de servicios web se hizo en el mismo proyecto de Net Core en el controlador Consumir
